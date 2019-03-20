@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/buscaCurso">
         <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".CadastroCorporativo"></activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
