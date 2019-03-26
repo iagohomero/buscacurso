@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), CadastroCorporativo.class);
                 startActivity(intent);
                 finish();
-                return false;
+                return true;
             }
         });
         
