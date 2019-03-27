@@ -50,7 +50,7 @@
             android:textColorHint="@color/colorPrimary">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -77,7 +77,7 @@
 
             <EditText
 
-                android:id="@+id/senha"
+                android:id="@+id/edtSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -99,10 +99,17 @@
             android:text="Login" />
 
         <Button
-            android:id="@+id/btCadastrar"
+            android:id="@+id/btCadastrarUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="Cadastrar" />
+
+        <Button
+            android:id="@+id/btCadastroEmpresa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Cadastro Empresa" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
