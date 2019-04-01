@@ -145,7 +145,7 @@
         android:backgroundTint="@color/colorPrimaryDark"
         android:textColorHighlight="@color/colorPrimary"
         android:textColorHint="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/confirmar"
+        app:layout_constraintBottom_toTopOf="@+id/btConfirmar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -165,7 +165,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/confirmar"
+        android:id="@+id/btConfirmar"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
@@ -189,6 +189,6 @@
         android:text="Voltar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmar" />
+        app:layout_constraintTop_toBottomOf="@+id/btConfirmar" />
 
 </android.support.constraint.ConstraintLayout>
