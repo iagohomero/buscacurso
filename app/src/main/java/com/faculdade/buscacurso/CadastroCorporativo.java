@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
->>>>>>> cbaa73cf4342016a1bc6267253aead8b40ba348c
+
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
