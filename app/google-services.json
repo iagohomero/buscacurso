@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "918439467636",
+    "firebase_url": "https://buscacurso-707d8.firebaseio.com",
+    "project_id": "buscacurso-707d8",
+    "storage_bucket": "buscacurso-707d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918439467636:android:47c63ab86944a1c3",
+        "android_client_info": {
+          "package_name": "com.faculdade.buscacurso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918439467636-a18s4vtmrv33q02hjs4m3jjaf391eedg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.faculdade.buscacurso",
+            "certificate_hash": "346b521b22131d3f83548c07f84998f7526b413e"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5OxKh_H3sH5S2Cfy-AVhZ13E7Kg7J3jA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918439467636-bu1d0ct33h4qj5rb76o27ps6h76a2vbt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
