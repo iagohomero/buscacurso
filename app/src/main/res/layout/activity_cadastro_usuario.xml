@@ -23,7 +23,7 @@
         app:layout_constraintTop_toBottomOf="@+id/CadastroCorporativo">
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
@@ -129,7 +129,7 @@
             android:layout_marginRight="30dp"
             android:backgroundTint="@android:color/black"
             android:hint="Repetir senha"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textColorHint="@android:color/black" />
     </android.support.design.widget.TextInputLayout>
 
@@ -145,7 +145,7 @@
         android:backgroundTint="@color/colorPrimaryDark"
         android:textColorHighlight="@color/colorPrimary"
         android:textColorHint="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btConfirmar"
+        app:layout_constraintBottom_toTopOf="@+id/btCadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -165,7 +165,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
-        android:id="@+id/btConfirmar"
+        android:id="@+id/btCadastrar"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
@@ -179,7 +179,7 @@
         app:layout_constraintTop_toBottomOf="@+id/input_layout_repetir_senha" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btVoltar"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
@@ -189,6 +189,6 @@
         android:text="Voltar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btConfirmar" />
+        app:layout_constraintTop_toBottomOf="@+id/btCadastrar" />
 
 </android.support.constraint.ConstraintLayout>

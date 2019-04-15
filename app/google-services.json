@@ -21,6 +21,26 @@
             "package_name": "com.faculdade.buscacurso",
             "certificate_hash": "346b521b22131d3f83548c07f84998f7526b413e"
           }
+        },
+        {
+          "client_id": "918439467636-9fskrmvvmliv8dqkikj1jrh6kq2td294.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.faculdade.buscacurso",
+            "certificate_hash": "cea4e0fa7e6204f650afd784b8de2a79ccea993f"
+          }
+        },
+        {
+          "client_id": "918439467636-b9ph2f8q42qfthob2bb8ri08vphbknak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.faculdade.buscacurso",
+            "certificate_hash": "c3281038ebdf452988c0e9da0ef968b5a13ef89a"
+          }
+        },
+        {
+          "client_id": "918439467636-bu1d0ct33h4qj5rb76o27ps6h76a2vbt.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
