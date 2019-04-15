@@ -1,0 +1,56 @@
+[33mcommit c6708c4632f4e16db3ae3812426b17bd2b2eb8ab[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Lucas de Assis Siqueira - MacBook <lucasasiqueira@outlook.com>
+Date:   Sat Apr 6 18:01:57 2019 -0300
+
+    implantação do firebase no projeto e exemplos de como cadastrar na classe CadastroCOrporativo.java
+    
+    implantação do firebase no projeto e exemplos de como cadastrar na classe CadastroCOrporativo.java
+
+[33mcommit e1243860a048f317a6d0570ca43625b0ef4efcde[m
+Author: Lucas de Assis Siqueira - MacBook <lucasasiqueira@outlook.com>
+Date:   Wed Mar 27 20:15:02 2019 -0300
+
+    Inserção de objetos + Activity Cadastro de Usuário
+    
+    Implementação de novas funcionalidades e activitys
+
+[33mcommit 374923ea9424a203bc91b453847c1869d8974ec0[m
+Author: Estevão Alves <pomerwe@gmail.com>
+Date:   Tue Mar 26 12:31:23 2019 -0300
+
+    Estilo para botões criado na pasta Drawable e estilo da pagina Cadastro Corporativo criado
+
+[33mcommit 02cb72b6a3ef857ee9d1790d01a3001711f635cd[m
+Author: Lucas de Assis Siqueira - MacBook <lucasasiqueira@outlook.com>
+Date:   Wed Mar 20 19:38:09 2019 -0300
+
+    commit chamar CadastroCorporativo.class
+    
+    commit chamar CadastroCorporativo.class
+
+[33mcommit 618208b91e533993a10d8a0ee836d732104f33dc[m
+Merge: 2a05548 af3abbb
+Author: Lucas de Assis Siqueira <lucasasiqueira@outlook.com>
+Date:   Tue Mar 19 19:38:12 2019 -0300
+
+    Merge branch 'master' of https://github.com/iagohomero/buscacurso
+
+[33mcommit 2a0554866f9c5e09aa4ad461dd0bf066288befcf[m
+Author: Lucas de Assis Siqueira <lucasasiqueira@outlook.com>
+Date:   Mon Mar 18 21:53:16 2019 -0300
+
+    implementação SplashScreen e LoginActivity
+    
+    implementação SplashScreen e LoginActivity
+
+[33mcommit af3abbb98fb093db0a0734c7695bb76a6513b3a1[m
+Author: pomerwe <pomerwe@gmail.com>
+Date:   Mon Mar 18 21:15:39 2019 -0300
+
+    Estevão - Layout CadastroCoporativo Começado
+
+[33mcommit 44f899b45cb0ff959f7a3cf3408c3aeabf317d90[m
+Author: Iago Homero <iagohomero@gmail.com>
+Date:   Mon Mar 18 11:14:20 2019 -0300
+
+    Primeiro commit
