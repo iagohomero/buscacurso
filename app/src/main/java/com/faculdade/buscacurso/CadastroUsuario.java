@@ -68,6 +68,12 @@ public class CadastroUsuario extends AppCompatActivity
             }
         });
 
+        btVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private boolean cadastrar(){

@@ -116,11 +116,13 @@ public class CadastroCorporativo extends AppCompatActivity
             if(email.equalsIgnoreCase("")
                     || senha.equalsIgnoreCase("")
                     || cnpj.equalsIgnoreCase("")
-                    || senhaConfirm.equalsIgnoreCase("")){
+                    || senhaConfirm.equalsIgnoreCase("")
+                    || senha.length() < 6){
                 if(email.equalsIgnoreCase("") ) edtEmail.setError("Email é obrigatório");
                 if(senha.equalsIgnoreCase("") ) edtSenha.setError("Senha é obrigatório");
                 if(cnpj.equalsIgnoreCase("") ) edtCnpj.setError("CNPJ é obrigatório");
                 if(senhaConfirm.equalsIgnoreCase("") ) edtConfirmaSenha.setError("Confirme a senha por favor");
+                if(senha.length() < 6 && !senha.equalsIgnoreCase("") ) edtConfirmaSenha.setError("Escolha uma senha com pelo menos 6 caracteres");
             }else{
                 if(senhasConfirmam()){
                     cadastroCorporativo();
@@ -154,7 +156,7 @@ public class CadastroCorporativo extends AppCompatActivity
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         if(success == true){
             builder.setTitle("Usuário cadastrado com sucesso");
-            builder.setMessage("Basta retornar a tela inicial e efetuar o login");
+            builder.setMessage("Efetue o login com as informações!");
             builder.setPositiveButton("Ok"  ,new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface arg0, int arg1) {
                     finish();
@@ -163,7 +165,7 @@ public class CadastroCorporativo extends AppCompatActivity
         }
         else{
             builder.setTitle("Houve um erro no cadastro");
-            builder.setMessage("Revise as informações e tente novamente");
+            builder.setMessage("Revise as informações e tente novamente!");
             builder.setPositiveButton("Ok"  ,new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface arg0, int arg1) {
 
@@ -196,8 +198,8 @@ public class CadastroCorporativo extends AppCompatActivity
         corpUser.setCNPJ(cnpj);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseAuth= FirebaseAuth.getInstance();
-        firebaseAuth.createUserWithEmailAndPassword(corpUser.getEmail(), this.senha).addOnCompleteListener
-                (this,new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(corpUser.getEmail(), senha).addOnCompleteListener
+                (new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
