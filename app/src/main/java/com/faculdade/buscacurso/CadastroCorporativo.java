@@ -13,14 +13,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.faculdade.buscacurso.Objetos.Estabelecimentos;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.faculdade.buscacurso.Objetos.Corporativo;
+import com.google.firebase.database.ValueEventListener;
 
 public class CadastroCorporativo extends AppCompatActivity
 {
@@ -34,7 +38,7 @@ public class CadastroCorporativo extends AppCompatActivity
     private EditText edtSenha;
     private EditText edtConfirmaSenha;
     private EditText edtCnpj;
-
+    int i = 0;
     private Corporativo corpUser = new Corporativo();
     private String email;
     private String senha;
@@ -48,8 +52,6 @@ public class CadastroCorporativo extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_corporativo);
-
-
 
         //setando manualmente os dados corporativo de um usuário, os dados devem ser mapeados de acordo com o que o usuário digitar
         // nas caixas de textos /edittexts
@@ -90,11 +92,6 @@ public class CadastroCorporativo extends AppCompatActivity
 
             }
         });*/
-
-
-
-
-
 
         edtEmail = findViewById(R.id.edtEmail);
         edtSenha = findViewById(R.id.edtSenha);
@@ -193,10 +190,50 @@ public class CadastroCorporativo extends AppCompatActivity
 
     }
 
+    public void showCnpjAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Estabelecimento inválido");
+        builder.setMessage("CNPJ não cadastrado");
+        builder.setPositiveButton("Ok"  ,new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+
+            }
+        });
+        this.alerta = builder.create();
+        this.alerta.show();
+
+    }
+
     public void cadastroCorporativo(){
         corpUser.setEmail(email);
         corpUser.setCNPJ(cnpj);
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        databaseReference.child("Estabelecimentos/"+corpUser.getCNPJ().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                if(dataSnapshot.exists())
+                {
+                    Estabelecimentos estabelecimentos = new Estabelecimentos();
+                    estabelecimentos = dataSnapshot.getValue(Estabelecimentos.class);
+                    CreateNewUser(estabelecimentos);
+                }
+                else
+                    showCnpjAlert();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void CreateNewUser(final Estabelecimentos estabelecimentos)
+    {
         firebaseAuth= FirebaseAuth.getInstance();
         firebaseAuth.createUserWithEmailAndPassword(corpUser.getEmail(), senha).addOnCompleteListener
                 (new OnCompleteListener<AuthResult>() {
@@ -205,6 +242,8 @@ public class CadastroCorporativo extends AppCompatActivity
                     {
                         if(task.isSuccessful()){
                             corpUser.setUserId(firebaseAuth.getCurrentUser().getUid());
+                            corpUser.setBairro(estabelecimentos.getBairro());
+                            corpUser.setRua(estabelecimentos.getRua());
                             databaseReference.child("UsuariosCorporativos/"+corpUser.getUserId()).setValue(corpUser);
                             showOnSignUpTry(true);
                         }
