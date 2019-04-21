@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/buscaCurso">
+        <activity android:name=".Home"></activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".CadastroCorporativo" />
         <activity android:name=".SplashScreen">
@@ -18,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CadastroUsuario"></activity>
+        <activity android:name=".CadastroUsuario" />
     </application>
 
 </manifest>
