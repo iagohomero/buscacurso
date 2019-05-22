@@ -13,7 +13,7 @@
         android:layout_width="191dp"
         android:layout_height="140dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/buscape"
+        android:src="@drawable/logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
 

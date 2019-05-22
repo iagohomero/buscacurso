@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context=".CadastroUsuario">
 
     <android.support.design.widget.TextInputLayout
@@ -98,7 +97,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
         android:text="Cadastro Usuário"
-        android:textColor="#fff8f2"
+        android:textColor="@android:color/black"
         android:textSize="26sp"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,16 +140,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
 
-        android:layout_marginBottom="8dp"
         android:backgroundTint="@color/colorPrimaryDark"
         android:textColorHighlight="@color/colorPrimary"
         android:textColorHint="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/btCadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout_repetir_senha"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_repetir_senha">
 
         <EditText
             android:id="@+id/edtTelefone"
@@ -169,14 +165,13 @@
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/button_confirmar_background"
         android:text="Cadastrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout_repetir_senha" />
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_telefone" />
 
     <Button
         android:id="@+id/btVoltar"
@@ -185,7 +180,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/button_cancelar_background"
         android:text="Voltar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

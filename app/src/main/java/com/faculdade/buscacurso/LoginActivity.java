@@ -141,7 +141,7 @@ public class LoginActivity extends AppCompatActivity
                                     {
                                         if(dataSnapshot.exists())
                                         {
-                                            Intent intent = new Intent(LoginActivity.this, Home.class);
+                                            Intent intent = new Intent(LoginActivity.this, HomeCorporativo.class);
                                             startActivity(intent);
                                         }
                                         else

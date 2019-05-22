@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+
     tools:context=".CadastroCorporativo">
 
     <android.support.design.widget.TextInputLayout
@@ -98,7 +98,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
         android:text="Cadastro Corporativo"
-        android:textColor="#fff8f2"
+        android:textColor="@android:color/black"
         android:textSize="26sp"
         android:typeface="monospace"
         app:layout_constraintEnd_toEndOf="parent"

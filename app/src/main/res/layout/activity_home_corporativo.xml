@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:fontFamily="sans-serif-condensed"
             android:gravity="center"
-            android:text="Bem vindo, %usuario% "
+            android:text="Usuário Corporativo"
             android:textColor="@android:color/black"
             android:typeface="normal" />
 
@@ -57,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Ver Cursos"
+                        android:text="Meus Cursos"
                         android:textColor="@android:color/black"
                         android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@android:color/white"
-                        android:src="@drawable/favoritos"
+                        android:src="@drawable/cadastraruser"
 
                         />
 
@@ -105,7 +105,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Cursos favoritos"
+                        android:text="Cadastrar Usuários"
                         android:textColor="@android:color/black"
                         android:textStyle="bold" />
 
@@ -120,7 +120,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Verifique seus cursos favoritos"
+                        android:text="Cadastre novos gestores"
                         android:textColor="@android:color/black" />
 
                 </LinearLayout>
@@ -175,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Dados cadastrais"
+                        android:text="Altere os seus dados"
                         android:textColor="@android:color/black" />
 
                 </LinearLayout>
@@ -221,7 +221,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Sujeito a validação"
+                        android:text="Realizar cadastro"
                         android:textColor="@android:color/black" />
 
                 </LinearLayout>
