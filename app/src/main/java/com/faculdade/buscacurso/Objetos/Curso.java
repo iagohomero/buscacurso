@@ -18,6 +18,7 @@ public class Curso {
     private String Preco;
     private String Bolsa;
     private String Materias;
+    private String Area_Curso;
 
     public String getId() {
         return Id;
@@ -155,5 +156,5 @@ public class Curso {
         Area_Curso = area_Curso;
     }
 
-    private String Area_Curso;
+
 }

@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CadastroCorporativo">
+        app:layout_constraintTop_toBottomOf="@+id/CadastroCurso">
 
         <EditText
             android:id="@+id/edtEmail"
@@ -90,7 +90,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <TextView
-        android:id="@+id/CadastroCorporativo"
+        android:id="@+id/CadastroCurso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -106,7 +106,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_repetir_senha"
+        android:id="@+id/input_layout_nome_curso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -146,7 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_layout_repetir_senha">
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_nome_curso">
 
         <EditText
             android:id="@+id/edtTelefone"
