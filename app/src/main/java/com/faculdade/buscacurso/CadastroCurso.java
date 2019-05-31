@@ -83,9 +83,9 @@ public class CadastroCurso extends AppCompatActivity {
 
     public void setCursoObject() {
         Nome = edtNomeCurso.getText().toString();
-        Carga_Horaria = edtNomeCurso.getText().toString();
-        Data_Inicio = edtNomeCurso.getText().toString();
-        Data_Fim = edtNomeCurso.getText().toString();
+        Carga_Horaria = edtCargaHoraria.getText().toString();
+        Data_Inicio = edtDataIni.getText().toString();
+        Data_Fim = edtDataFim.getText().toString();
         nome_Estabelecimento = "usuario";
         /*nome_Estabelecimento = Singleton.
                 getInstance().
