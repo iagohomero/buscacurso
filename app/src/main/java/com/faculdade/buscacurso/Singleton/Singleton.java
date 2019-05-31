@@ -1,7 +1,27 @@
 package com.faculdade.buscacurso.Singleton;
 
+import com.faculdade.buscacurso.Objetos.Corporativo;
+
 public class Singleton
 {
-    private static Singleton instance=null;
+    public static Singleton instance=null;
 
+    public static Singleton getInstance() {
+        return instance;
+    }
+
+    public static void setInstance(Singleton instance) {
+        Singleton.instance = instance;
+    }
+
+
+    public Corporativo corporativo = new Corporativo();
+
+    public Corporativo getCorporativo() {
+        return corporativo;
+    }
+
+    public void setCorporativo(Corporativo corporativo) {
+        this.corporativo = corporativo;
+    }
 }

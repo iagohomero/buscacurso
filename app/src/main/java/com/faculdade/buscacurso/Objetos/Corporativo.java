@@ -21,6 +21,29 @@ public class Corporativo
     private String Complemento;
     private String Referencia;
 
+    private String NomeEstabelecimento;
+    private String CodigoEstabelecimento;
+
+    public String getNomeEstabelecimento()
+    {
+        return NomeEstabelecimento;
+    }
+
+    public void setNomeEstabelecimento(String nomeEstabelecimento)
+    {
+        NomeEstabelecimento = nomeEstabelecimento;
+    }
+
+    public String getCodigoEstabelecimento()
+    {
+        return CodigoEstabelecimento;
+    }
+
+    public void setCodigoEstabelecimento(String codigoEstabelecimento)
+    {
+        CodigoEstabelecimento = codigoEstabelecimento;
+    }
+
     public String getCNPJ()
     {
         return CNPJ;

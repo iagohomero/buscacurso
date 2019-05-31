@@ -94,6 +94,7 @@ public class CadastroUsuario extends AppCompatActivity
                         databaseReference.child("Usuarios/"+usuario.getUserId()).setValue(usuario);
                         finish();
                         Intent intent = new Intent(CadastroUsuario.this, Home.class);
+                        startActivity(intent);
                     }
 
                 }

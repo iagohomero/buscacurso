@@ -8,12 +8,23 @@ public class Estabelecimentos
     private String Latitude;
     private String Longitude;
     private String NomeEstabelecimento;
+    private String CodigoEstabelecimento;
     private String Numero;
     private String Responsavel;
     private String Rua;
     private String Bairro;
     private String Telefone;
     private String UrlImagem;
+
+    public String getCodigoEstabelecimento()
+    {
+        return CodigoEstabelecimento;
+    }
+
+    public void setCodigoEstabelecimento(String codigoEstabelecimento)
+    {
+        CodigoEstabelecimento = codigoEstabelecimento;
+    }
 
     public String getBairro() {
         return Bairro;
