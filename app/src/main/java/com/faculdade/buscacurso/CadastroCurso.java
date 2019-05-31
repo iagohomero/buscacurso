@@ -2,11 +2,15 @@ package com.faculdade.buscacurso;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.faculdade.buscacurso.Objetos.Curso;
 
 public class CadastroCurso extends AppCompatActivity {
+    private Button cadastrar;
+    private Button voltar;
 
     private EditText edtNomeCurso;
     private EditText edtTipoCurso;
@@ -35,6 +39,8 @@ public class CadastroCurso extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_curso);
 
+        cadastrar = findViewById(R.id.btCadastrar);
+        voltar = findViewById(R.id.btVoltar);
         edtNomeCurso = findViewById(R.id.edtNomeCurso);
         edtTipoCurso = findViewById(R.id.edtTipoCurso);
         edtAreaCurso = findViewById(R.id.edtAreaCurso);
@@ -44,5 +50,13 @@ public class CadastroCurso extends AppCompatActivity {
         edtCargaHoraria = findViewById(R.id.edtCargaHoraria);
         edtDataIni = findViewById(R.id.edtDataIni);
         edtDataFim = findViewById(R.id.edtDataFim);
+
+        //Voltar ao clickar em voltar;
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

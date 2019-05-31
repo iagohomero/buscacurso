@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -16,6 +18,8 @@ import com.google.firebase.database.ValueEventListener;
 public class Home extends AppCompatActivity
 {
 
+    private LinearLayout btCadastro;
+
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
@@ -25,7 +29,13 @@ public class Home extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        btCadastro = findViewById(R.id.btCadastro);
+        btCadastro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pushCursoCadastro();
+            }
+        });
         VerifyLogin();
 
 
@@ -43,6 +53,11 @@ public class Home extends AppCompatActivity
             return;
         }
 
+    }
+
+    public void pushCursoCadastro(){
+        Intent intent = new Intent(getApplicationContext(),CadastroCurso.class);
+        startActivity(intent);
     }
 
 }
