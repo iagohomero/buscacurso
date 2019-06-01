@@ -3,6 +3,7 @@ package com.faculdade.buscacurso;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -12,24 +13,24 @@ import com.github.underscore.Function;
 public class HomeCorporativo extends AppCompatActivity
 {
 
-    private LinearLayout btCadastro;
+    private CardView btCadastro;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_corporativo);
 
-        btCadastro = findViewById(R.id.btCadastro);
+        btCadastro = findViewById(R.id.produtoscard);
         btCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                $.setTimeout((new Function<Void>() {
+                $.setTimeout(new Function<Void>() {
                     public Void apply() {
                         pushCursoCadastro();
                         return null;
                     }
-                }, 500);
+                }, 200);
             }
         });
     }
