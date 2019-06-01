@@ -101,14 +101,18 @@ public class CadastroCurso extends AppCompatActivity {
         if (Nome.equalsIgnoreCase("") ||
                 Carga_Horaria.equalsIgnoreCase("") ||
                 Data_Inicio.equalsIgnoreCase("") ||
+                Data_Inicio.length() < 10 ||
                 Data_Fim.equalsIgnoreCase("") ||
+                Data_Fim.length() < 10 ||
                 Limite_Alunos.equalsIgnoreCase("") ||
                 Tipo_curso.equalsIgnoreCase("") ||
                 Nota_Mec.equalsIgnoreCase("") ||
                 Preco.equalsIgnoreCase("") ||
                 Area_Curso.equalsIgnoreCase("")) {
             if (Nome.equalsIgnoreCase("")) edtNomeCurso.setError("Campo obrigarótio!");
+            else if (Data_Inicio.length() < 10 ) edtDataIni.setError(String.valueOf("Digite a data corretamente!"));
             else if (Data_Inicio.equalsIgnoreCase("")) edtDataIni.setError("Campo obrigarótio!");
+            else if (Data_Fim.length() < 10 ) edtDataFim.setError("Digite a data corretamente!");
             else if (Data_Fim.equalsIgnoreCase("")) edtDataFim.setError("Campo obrigarótio!");
             else if (Limite_Alunos.equalsIgnoreCase("")) edtLimiteAlunos.setError("Campo obrigarótio!");
             else if (Tipo_curso.equalsIgnoreCase("")) edtTipoCurso.setError("Campo obrigarótio!");

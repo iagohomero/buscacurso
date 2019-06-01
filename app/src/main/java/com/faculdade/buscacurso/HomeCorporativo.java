@@ -8,23 +8,38 @@ import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.github.underscore.$;
+import com.github.underscore.Function;
+
 public class HomeCorporativo extends AppCompatActivity
 {
 
-    private LinearLayout btCadastro;
-    @SuppressLint("WrongViewCast")
+
+    private CardView btCadastro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_corporativo);
 
+
         btCadastro = findViewById(R.id.cardViewCadastro);
         btCadastro.setOnClickListener(new View.OnClickListener()
         {
+
+        btCadastro = findViewById(R.id.produtoscard);
+        btCadastro.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                pushCursoCadastro();
+
+                $.setTimeout(new Function<Void>() {
+                    public Void apply() {
+                        pushCursoCadastro();
+                        return null;
+                    }
+                }, 200);
             }
         });
     }
