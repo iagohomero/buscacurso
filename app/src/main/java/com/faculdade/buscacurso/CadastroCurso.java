@@ -138,7 +138,7 @@ public class CadastroCurso extends AppCompatActivity {
             curso.setCarga_Horaria(Carga_Horaria);
             curso.setData_Inicio(Data_Inicio);
             curso.setData_Fim(Data_Fim);
-            curso.getArea_Curso();
+            curso.setArea_Curso(Area_Curso);
             curso.setData_Inicio_Inscricao("");
             curso.setData_Fim_Inscricao("");
             curso.setNome_Estabelecimento(nome_Estabelecimento);
