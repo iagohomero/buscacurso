@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.github.underscore.$;
+import com.github.underscore.Function;
+
 public class HomeCorporativo extends AppCompatActivity
 {
 
@@ -20,7 +23,13 @@ public class HomeCorporativo extends AppCompatActivity
         btCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pushCursoCadastro();
+
+                $.setTimeout((new Function<Void>() {
+                    public Void apply() {
+                        pushCursoCadastro();
+                        return null;
+                    }
+                }, 500);
             }
         });
     }

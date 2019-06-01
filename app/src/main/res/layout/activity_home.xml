@@ -190,7 +190,7 @@
                 android:foreground="?android:attr/selectableItemBackground">
 
                 <LinearLayout
-                    android:id="@+id/btCadastro"
+                    android:id="@+id/btCadastroCurso"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
