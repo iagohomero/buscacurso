@@ -1,15 +1,19 @@
 package com.faculdade.buscacurso;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.faculdade.buscacurso.Objetos.Curso;
 import com.faculdade.buscacurso.Singleton.Singleton;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -49,7 +53,8 @@ public class CadastroCurso extends AppCompatActivity {
     FirebaseUser firebaseUser;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_curso);
 
@@ -72,7 +77,8 @@ public class CadastroCurso extends AppCompatActivity {
             }
         });
         //Voltar ao clickar em voltar;
-        voltar.setOnClickListener(new View.OnClickListener() {
+        voltar.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 finish();
@@ -86,24 +92,7 @@ public class CadastroCurso extends AppCompatActivity {
         Carga_Horaria = edtCargaHoraria.getText().toString();
         Data_Inicio = edtDataIni.getText().toString();
         Data_Fim = edtDataFim.getText().toString();
-        nome_Estabelecimento = "usuario";
-        /*nome_Estabelecimento = Singleton.
-                getInstance().
-                getCorporativo().
-                getNomeEstabelecimento() == null ? "" :
-                Singleton.
-                        getInstance().
-                        getCorporativo().
-                        getNomeEstabelecimento();
-        Codigo_Estabelecimento = Singleton.
-                getInstance().
-                getCorporativo().
-                getCodigoEstabelecimento() == null ? "" :
-                Singleton.
-                        getInstance().
-                        getCorporativo().
-                        getCodigoEstabelecimento();*/
-        Codigo_Estabelecimento = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         Limite_Alunos = edtLimiteAlunos.getText().toString();
         Tipo_curso = edtTipoCurso.getText().toString();
         Nota_Mec = edtNotaMec.getText().toString();
@@ -127,14 +116,18 @@ public class CadastroCurso extends AppCompatActivity {
             else if (Preco.equalsIgnoreCase("")) edtValor.setError("Campo obrigarótio!");
             else if (Area_Curso.equalsIgnoreCase("")) edtAreaCurso.setError("Campo obrigarótio!");
 
-        } else {
-            curso.setId("");
+        }
+        else
+        {
+            databaseReference = FirebaseDatabase.getInstance().getReference();
+
+            curso.setId(databaseReference.push().getKey());
             curso.setNome(Nome);
             curso.setRequisito("");
             curso.setCarga_Horaria(Carga_Horaria);
             curso.setData_Inicio(Data_Inicio);
             curso.setData_Fim(Data_Fim);
-            curso.getArea_Curso();
+            curso.setArea_Curso(Area_Curso);
             curso.setData_Inicio_Inscricao("");
             curso.setData_Fim_Inscricao("");
             curso.setNome_Estabelecimento(nome_Estabelecimento);
@@ -146,9 +139,23 @@ public class CadastroCurso extends AppCompatActivity {
             curso.setBolsa("");
             curso.setMaterias("");
 
-            databaseReference = FirebaseDatabase.getInstance().getReference();
 
-            databaseReference.child("Cursos/" + curso.getCodigo_Estabelecimento()+"/").setValue(curso);
+            nome_Estabelecimento = Singleton.getInstance(getApplicationContext()).getCorporativo().getNomeEstabelecimento();
+            Codigo_Estabelecimento = Singleton.getInstance(getApplicationContext()).getCorporativo().getCodigoEstabelecimento();
+            databaseReference.child("Cursos"+nome_Estabelecimento+Codigo_Estabelecimento+"/"+
+                    curso.getArea_Curso()+"/"+curso.getId()).setValue(curso).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task)
+                {
+                    if(task.isSuccessful())
+                    {
+                        Toast.makeText(CadastroCurso.this, "Cadastro realizado com sucesso", Toast.LENGTH_LONG).show();
+                        finish();
+                        onBackPressed();
+                    }
+
+                }
+            });
 
 
         }

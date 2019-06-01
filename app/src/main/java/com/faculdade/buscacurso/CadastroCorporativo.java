@@ -1,6 +1,7 @@
 package com.faculdade.buscacurso;
 
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.faculdade.buscacurso.Objetos.Estabelecimentos;
+import com.faculdade.buscacurso.Singleton.Singleton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -52,46 +54,6 @@ public class CadastroCorporativo extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_corporativo);
-
-        //setando manualmente os dados corporativo de um usuário, os dados devem ser mapeados de acordo com o que o usuário digitar
-        // nas caixas de textos /edittexts
-        /*Corporativo corporativo = new Corporativo();
-        corporativo.setBairro("Eldorado");
-        corporativo.setCidade("Contagem");
-        corporativo.setCNPJ("19.973.0001-40");
-        corporativo.setComplemento(" ");
-        corporativo.setEmail("teste@teste.com.br");
-        corporativo.setEstado("MG");
-        corporativo.setNumero("10");
-        corporativo.setReferencia("proximo ao posto");
-        corporativo.setResponsavel("Joao Goualrt");
-        corporativo.setRua("Ruaaaaaaaaaa");
-        corporativo.setUrlImagem("google.com");
-        corporativo.setUserId("IdUsuario");
-        corporativo.setLatitude("latitude");
-        corporativo.setLongitude("longitd");*/
-
-
-        //teste de como cadastrar no database
-        // databaseReference.child("UsuariosCorporativos/"+corporativo.getUserId()).setValue(corporativo);
-
-
-        /*
-        só pegar os dados do usuario e passar ali onde tem email e senha
-        firebaseAuth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener
-                (new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task)
-            {
-                corporativo.setUserId(FirebaseAuth.getInstance().getCurrentUser().getUid();)
-                databaseReference.child("UsuariosCorporativos/"+corporativo.getUserId()).setValue(corporativo);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        });*/
 
         edtEmail = findViewById(R.id.edtEmail);
         edtSenha = findViewById(R.id.edtSenha);
@@ -151,14 +113,12 @@ public class CadastroCorporativo extends AppCompatActivity
 
     public void showOnSignUpTry(boolean success){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        if(success == true){
-            builder.setTitle("Usuário cadastrado com sucesso");
-            builder.setMessage("Efetue o login com as informações!");
-            builder.setPositiveButton("Ok"  ,new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface arg0, int arg1) {
-                    finish();
-                }
-            });
+        if(success == true)
+        {
+            Singleton.getInstance(getApplicationContext()).setCorporativo(corpUser);
+            Intent intent = new Intent(CadastroCorporativo.this, HomeCorporativo.class);
+            startActivity(intent);
+            finish();
         }
         else{
             builder.setTitle("Houve um erro no cadastro");
@@ -204,7 +164,8 @@ public class CadastroCorporativo extends AppCompatActivity
 
     }
 
-    public void cadastroCorporativo(){
+    public void cadastroCorporativo()
+    {
         corpUser.setEmail(email);
         corpUser.setCNPJ(cnpj);
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -240,10 +201,15 @@ public class CadastroCorporativo extends AppCompatActivity
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
-                        if(task.isSuccessful()){
+                        if(task.isSuccessful())
+                        {
+                            corpUser.setCodigoEstabelecimento(estabelecimentos.getCodigoEstabelecimento());
+                            corpUser.setNomeEstabelecimento(estabelecimentos.getNomeEstabelecimento());
                             corpUser.setUserId(firebaseAuth.getCurrentUser().getUid());
                             corpUser.setBairro(estabelecimentos.getBairro());
                             corpUser.setRua(estabelecimentos.getRua());
+                            corpUser.setCNPJ(estabelecimentos.getCnpj());
+
                             databaseReference.child("UsuariosCorporativos/"+corpUser.getUserId()).setValue(corpUser);
                             showOnSignUpTry(true);
                         }

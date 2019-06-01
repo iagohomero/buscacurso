@@ -6,12 +6,17 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.faculdade.buscacurso.Objetos.Corporativo;
+import com.faculdade.buscacurso.Objetos.Estabelecimentos;
+import com.faculdade.buscacurso.Singleton.Singleton;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -116,14 +121,90 @@ public class LoginActivity extends AppCompatActivity
     {
 
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signInWithEmailAndPassword(Email, Senha).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(Email, Senha)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {
+                        //if the task is successfull
+                        if (task.isSuccessful())
+                        {
+                            databaseReference = FirebaseDatabase.getInstance().getReference().child("Usuarios/"+firebaseAuth.getCurrentUser().getUid());
+                            databaseReference.addListenerForSingleValueEvent(new ValueEventListener()
+                            {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                {
+                                    if(dataSnapshot.exists())
+                                    {
+                                        Intent intent = new Intent(LoginActivity.this, Home.class);
+                                        startActivity(intent);
+                                    }
+                                    else
+                                    {
+                                        DatabaseReference databaseReferenceCorporativo = FirebaseDatabase.getInstance().getReference().child("UsuariosCorporativos/"+firebaseAuth.getCurrentUser().getUid());
+                                        databaseReferenceCorporativo.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                                            {
+                                                if(dataSnapshot.exists())
+                                                {
+                                                    Corporativo corporativo = new Corporativo();
+                                                    corporativo = dataSnapshot.getValue(Corporativo.class);
+                                                    Singleton.getInstance(getApplicationContext()).setCorporativo(corporativo);
+
+                                                    Intent intent = new Intent(LoginActivity.this, HomeCorporativo.class);
+                                                    startActivity(intent);
+                                                }
+                                                else
+                                                {
+                                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                                    builder.setTitle("Usuário não cadastrado")
+                                                            .setCancelable(false)
+                                                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    dialog.dismiss();
+                                                                }
+                                                            });
+                                                    AlertDialog alert = builder.create();
+                                                    alert.show();
+                                                }
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                        else
+                        {
+                            Toast.makeText(LoginActivity.this, "Login ou senha inválidos", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+        /*
+        firebaseAuth.signInWithEmailAndPassword(Email, Senha).addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+        {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task)
             {
                 if(task.isSuccessful())
                 {
                     databaseReference = FirebaseDatabase.getInstance().getReference().child("Usuarios/"+firebaseAuth.getCurrentUser().getUid());
-                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener()
+                    {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot)
                         {
@@ -141,6 +222,10 @@ public class LoginActivity extends AppCompatActivity
                                     {
                                         if(dataSnapshot.exists())
                                         {
+                                            Corporativo corporativo = new Corporativo();
+                                            corporativo = dataSnapshot.getValue(Corporativo.class);
+                                            Singleton.getInstance().setCorporativo(corporativo);
+
                                             Intent intent = new Intent(LoginActivity.this, HomeCorporativo.class);
                                             startActivity(intent);
                                         }
@@ -191,6 +276,7 @@ public class LoginActivity extends AppCompatActivity
                 }
             }
         });
+        */
     }
 
     private boolean isValidEmail(String email)
