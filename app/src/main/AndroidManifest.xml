@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/buscaCurso">
-        <activity android:name=".CadastroCurso"></activity>
+        <activity android:name=".CadastroCurso" />
         <activity android:name=".Home" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".CadastroCorporativo" />
@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".CadastroUsuario" />
         <activity android:name=".HomeCorporativo" />
+        <activity android:name=".CursosUsuario"></activity>
     </application>
 
 </manifest>

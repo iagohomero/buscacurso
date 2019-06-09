@@ -19,6 +19,15 @@ public class Curso {
     private String Bolsa;
     private String Materias;
     private String Area_Curso;
+    private String Endereco;
+
+    public String getEndereco() {
+        return Endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        Endereco = endereco;
+    }
 
     public String getId() {
         return Id;

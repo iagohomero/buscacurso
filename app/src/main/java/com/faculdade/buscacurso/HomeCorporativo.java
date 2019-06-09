@@ -11,20 +11,19 @@ import android.widget.LinearLayout;
 import com.github.underscore.$;
 import com.github.underscore.Function;
 
-public class HomeCorporativo extends AppCompatActivity
-{
+public class HomeCorporativo extends AppCompatActivity {
 
 
     private CardView btCadastro;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_corporativo);
+/*
 
-
-        btCadastro = findViewById(R.id.cardViewCadastro);
+        btCadastro = (CardView) findViewById(R.id.cardViewCadastro);
         btCadastro.setOnClickListener(new View.OnClickListener()
         {
 
@@ -46,5 +45,7 @@ public class HomeCorporativo extends AppCompatActivity
     public void pushCursoCadastro(){
         Intent intent = new Intent(getApplicationContext(),CadastroCurso.class);
         startActivity(intent);
+    }
+    */
     }
 }
