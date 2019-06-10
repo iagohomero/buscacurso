@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.faculdade.buscacurso.Adapters.CursoUsuarioAdapter;
-import com.faculdade.buscacurso.Objetos.Estabelecimentos;
+import com.faculdade.buscacurso.Objetos.Curso;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -18,46 +18,53 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class CursosUsuario extends AppCompatActivity
+public class VerCursos extends AppCompatActivity
 {
-
+    CursoUsuarioAdapter adapter;
+    ArrayList<Curso> cursoArrayList = new ArrayList();
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
-    CursoUsuarioAdapter adapter;
-    ArrayList<Estabelecimentos> estabelecimentosArrayList = new ArrayList();
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
+
+    String NomeEstabelecimento;
+    String CodigoEstabelecimento;
+    String TipoCurso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cursos_usuario);
+        setContentView(R.layout.activity_ver_cursos);
+
+        Bundle extras = getIntent().getExtras();
 
         recyclerView = findViewById(R.id.recycler_view);
         layoutManager=new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
+        NomeEstabelecimento = extras.getString("NomeEstabelecimento");
+        CodigoEstabelecimento = extras.getString("CodigoEstabelecimento");
+        TipoCurso = extras.getString("AreaCurso");
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("Estabelecimentos").addListenerForSingleValueEvent(new ValueEventListener()
-        {
+        databaseReference.child("Cursos"+NomeEstabelecimento+CodigoEstabelecimento+"/"+TipoCurso).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
-                int Size = 0;
                 for (DataSnapshot objSnapshot : dataSnapshot.getChildren())
                 {
+                    Curso curso = new Curso();
+                    curso = objSnapshot.getValue(Curso.class);
+                    cursoArrayList.add(curso);
+                    if(adapter == null)
+                        adapter =new CursoUsuarioAdapter(cursoArrayList, getApplicationContext());
+                    else
+                        adapter.notifyDataSetChanged();
 
-                        estabelecimentosArrayList.add( (Estabelecimentos) objSnapshot.getValue(Estabelecimentos.class));
-                        Size++;
+                    recyclerView.setAdapter(adapter);
                 }
-                if(Size == dataSnapshot.getChildrenCount())
-                {
-
-                }
-
             }
 
             @Override
