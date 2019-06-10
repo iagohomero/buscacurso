@@ -92,7 +92,7 @@ public class Home extends AppCompatActivity
                 {
                     Usuario usuario = new Usuario();
                     usuario = dataSnapshot.getValue(Usuario.class);
-                    tvPainel.setText("Bem vindo, " + usuario.getNome());
+                    tvPainel.setText("Bem vindo, " + usuario.getNome().toUpperCase());
                 }
             }
 
