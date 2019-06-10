@@ -94,7 +94,7 @@ public class CursoInfo extends AppCompatActivity
             firebaseAuth = FirebaseAuth.getInstance();
             firebaseUser = firebaseAuth.getCurrentUser();
             databaseReference = FirebaseDatabase.getInstance().getReference();
-            databaseReference.child("Usuarios/"+firebaseUser.getUid()).push().setValue(curso).addOnCompleteListener(new OnCompleteListener<Void>() {
+            databaseReference.child("Usuarios/"+firebaseUser.getUid()+"/Favoritos").push().setValue(curso).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task)
                 {
