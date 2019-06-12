@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,17 +25,19 @@ public class CursoUsuarioAdapter extends RecyclerView.Adapter<CursoUsuarioAdapte
     ArrayList<Curso> arrayList = new ArrayList<>();
     Context context;
     boolean isCurso = false;
+    boolean isFavoritos = false;
     public CursoUsuarioAdapter(ArrayList<Curso> arrayList, Context mContext)
     {
         this.arrayList = arrayList;
         this.context = mContext;
     }
 
-    public CursoUsuarioAdapter(ArrayList<Curso> arrayList, Context mContext, boolean isCurso)
+    public CursoUsuarioAdapter(ArrayList<Curso> arrayList, Context mContext, boolean isCurso , boolean isFavoritos)
     {
         this.arrayList = arrayList;
         this.context = mContext;
         this.isCurso = isCurso;
+        this.isFavoritos = isFavoritos;
     }
 
     @NonNull
@@ -50,6 +53,8 @@ public class CursoUsuarioAdapter extends RecyclerView.Adapter<CursoUsuarioAdapte
     {
         if(!isCurso)
         {
+
+            Log.d("ISFAVORITOS", String.valueOf((isFavoritos)));
             holder.tvEndereco.setText(arrayList.get(position).getEndereco());
             holder.tvValor.setText(arrayList.get(position).getBolsa());
             holder.tvInscricao.setText(arrayList.get(position).getData_Fim_Inscricao());
@@ -61,6 +66,7 @@ public class CursoUsuarioAdapter extends RecyclerView.Adapter<CursoUsuarioAdapte
                 {
                     Intent intent = new Intent(context, CursoInfo.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("favoritos",String.valueOf(isFavoritos));
                     Singleton.getInstance(context).setCurso(arrayList.get(position));
                     context.startActivity(intent);
                 }
@@ -68,6 +74,7 @@ public class CursoUsuarioAdapter extends RecyclerView.Adapter<CursoUsuarioAdapte
         }
         else
         {
+            Log.d("ISFAVORITOS", String.valueOf((isFavoritos)));
             holder.tvNomeEstabelecimento.setText(arrayList.get(position).getNome_Estabelecimento());
             holder.tvInscricao.setVisibility(View.GONE);
             holder.tvValor.setVisibility(View.GONE);
@@ -82,6 +89,8 @@ public class CursoUsuarioAdapter extends RecyclerView.Adapter<CursoUsuarioAdapte
                     intent.putExtra("NomeEstabelecimento",String.valueOf(arrayList.get(position).getNome_Estabelecimento()));
                     intent.putExtra("CodigoEstabelecimento", arrayList.get(position).getCodigo_Estabelecimento());
                     intent.putExtra("AreaCurso", arrayList.get(position).getArea_Curso());
+
+
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
                 }

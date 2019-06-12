@@ -1,8 +1,10 @@
 package com.faculdade.buscacurso;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -45,6 +47,9 @@ public class CursoInfo extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curso_info);
+        Intent intent = getIntent();
+
+
         curso = Singleton.getInstance(getApplicationContext()).getCurso();
         if(curso != null)
         {
@@ -77,14 +82,29 @@ public class CursoInfo extends AppCompatActivity
             tvDataFimInscricao.setText("Data fim das inscrições: " + curso.getData_Fim_Inscricao());
         }
         btAdicionarFavorito = findViewById(R.id.btAdicionarFavorito);
-        btAdicionarFavorito.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
+        String favoritos = intent.getStringExtra("favoritos");
+        if(favoritos.equals("true")){
+            btAdicionarFavorito.setText("REMOVER DOS FAVORITOS");
+            btAdicionarFavorito.setOnClickListener(new View.OnClickListener()
             {
-                AddFavorite();
-            }
-        });
+                @Override
+                public void onClick(View v)
+                {
+                    RemoveFavorite();
+                }
+            });
+        }
+        else{
+            btAdicionarFavorito.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    AddFavorite();
+                }
+            });
+        }
+
     }
 
     private void AddFavorite()
@@ -94,13 +114,33 @@ public class CursoInfo extends AppCompatActivity
             firebaseAuth = FirebaseAuth.getInstance();
             firebaseUser = firebaseAuth.getCurrentUser();
             databaseReference = FirebaseDatabase.getInstance().getReference();
-            databaseReference.child("Usuarios/"+firebaseUser.getUid()+"/Favoritos").push().setValue(curso).addOnCompleteListener(new OnCompleteListener<Void>() {
+            databaseReference.child("Usuarios/"+firebaseUser.getUid()+"/Favoritos/"+curso.getId()).setValue(curso).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task)
                 {
                     if(task.isSuccessful())
                     {
                         Toast.makeText(getApplicationContext(), "Curso adicionado aos favoritos",Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
+    }
+
+    private void RemoveFavorite()
+    {
+        if(curso != null)
+        {
+            firebaseAuth = FirebaseAuth.getInstance();
+            firebaseUser = firebaseAuth.getCurrentUser();
+            databaseReference = FirebaseDatabase.getInstance().getReference();
+            databaseReference.child("Usuarios/"+firebaseUser.getUid()+"/Favoritos/"+curso.getId()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task)
+                {
+                    if(task.isSuccessful())
+                    {
+                        Toast.makeText(getApplicationContext(), "Curso removido dos favoritos",Toast.LENGTH_LONG).show();
                     }
                 }
             });
