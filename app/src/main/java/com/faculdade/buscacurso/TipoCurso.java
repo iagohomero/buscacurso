@@ -70,6 +70,8 @@ public class TipoCurso extends AppCompatActivity
 
     }
 
+
+
     private void CarregarCursos()
     {
         for (final Estabelecimentos  item : estabelecimentosArrayList)

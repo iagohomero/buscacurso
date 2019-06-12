@@ -1,5 +1,6 @@
 package com.faculdade.buscacurso;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ public class CursosFavoritos extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getIntent().setAction("Already created");
         setContentView(R.layout.activity_cursos_favoritos);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -65,5 +67,23 @@ public class CursosFavoritos extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        String action = getIntent().getAction();
+        // Prevent endless loop by adding a unique action, don't restart if action is present
+        if(action == null || !action.equals("Already created")) {
+
+            Intent intent = new Intent(getApplicationContext(),CursosFavoritos.class);
+            startActivity(intent);
+            finish();
+        }
+        // Remove the unique action so the next time onResume is called it will restart
+        else
+            getIntent().setAction(null);
+        super.onResume();
+
+
     }
 }
