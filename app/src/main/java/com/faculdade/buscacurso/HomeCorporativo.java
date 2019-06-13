@@ -21,11 +21,7 @@ public class HomeCorporativo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_corporativo);
-/*
 
-        btCadastro = (CardView) findViewById(R.id.cardViewCadastro);
-        btCadastro.setOnClickListener(new View.OnClickListener()
-        {
 
         btCadastro = findViewById(R.id.produtoscard);
         btCadastro.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +42,6 @@ public class HomeCorporativo extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),CadastroCurso.class);
         startActivity(intent);
     }
-    */
-    }
+
 }
+

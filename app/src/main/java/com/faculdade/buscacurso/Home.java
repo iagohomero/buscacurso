@@ -23,6 +23,7 @@ public class Home extends AppCompatActivity
 {
 
     private CardView btCadastro;
+    private CardView btFavoritos;
     private CardView vendascurso;
     private CardView btPerfil;
     FirebaseAuth firebaseAuth;
@@ -39,7 +40,9 @@ public class Home extends AppCompatActivity
 
         btCadastro = findViewById(R.id.produtoscard);
         btPerfil = findViewById(R.id.meuperfilcard);
+        btFavoritos = findViewById(R.id.promocoescard);
         vendascurso = findViewById(R.id.vendascurso);
+
         vendascurso.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -48,6 +51,7 @@ public class Home extends AppCompatActivity
                 VerCursos();
             }
         });
+
         btCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,12 +66,25 @@ public class Home extends AppCompatActivity
 
             }
         });
+
         btPerfil.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 Perfil();
+            }
+        });
+
+        btFavoritos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                $.setTimeout(new Function<Void>() {
+                    public Void apply() {
+                        pushCursosFavoritos();
+                        return null;
+                    }
+                }, 200);
             }
         });
 
@@ -126,6 +143,12 @@ public class Home extends AppCompatActivity
     public void pushCursoCadastro()
     {
         Intent intent = new Intent(getApplicationContext(),CadastroCurso.class);
+        startActivity(intent);
+    }
+
+    public void pushCursosFavoritos()
+    {
+        Intent intent = new Intent(getApplicationContext(),CursosFavoritos.class);
         startActivity(intent);
     }
 

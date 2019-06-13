@@ -70,6 +70,8 @@ public class TipoCurso extends AppCompatActivity
 
     }
 
+
+
     private void CarregarCursos()
     {
         for (final Estabelecimentos  item : estabelecimentosArrayList)
@@ -88,7 +90,7 @@ public class TipoCurso extends AppCompatActivity
                         curso.setNome_Estabelecimento(item.getNomeEstabelecimento());
                         cursosArrayList.add(curso);
                         if(adapter == null)
-                            adapter = new CursoUsuarioAdapter(cursosArrayList, getApplicationContext(),true);
+                            adapter = new CursoUsuarioAdapter(cursosArrayList, getApplicationContext(),true,false);
                         else
                             adapter.notifyDataSetChanged();
 
