@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -81,7 +80,7 @@ public class CursoInfo extends AppCompatActivity
             tvDataInicioInscricao.setText("Data de abertura das inscrições: " + curso.getData_Inicio_Inscricao());
             tvDataFimInscricao.setText("Data fim das inscrições: " + curso.getData_Fim_Inscricao());
         }
-        btAdicionarFavorito = findViewById(R.id.btAdicionarFavorito);
+        btAdicionarFavorito = findViewById(R.id.btAlterarCurso);
         String favoritos = intent.getStringExtra("favoritos");
         if(favoritos.equals("true")){
             btAdicionarFavorito.setText("REMOVER DOS FAVORITOS");

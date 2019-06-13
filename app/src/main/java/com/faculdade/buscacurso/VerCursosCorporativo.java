@@ -7,7 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.faculdade.buscacurso.Adapters.CursoUsuarioAdapter;
+import com.faculdade.buscacurso.Objetos.Corporativo;
 import com.faculdade.buscacurso.Objetos.Curso;
+import com.faculdade.buscacurso.Singleton.Singleton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -18,25 +20,26 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class VerCursos extends AppCompatActivity
+public class VerCursosCorporativo extends AppCompatActivity
 {
+
     CursoUsuarioAdapter adapter;
     ArrayList<Curso> cursoArrayList = new ArrayList();
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+    Corporativo corporativo = new Corporativo();
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
 
-    String NomeEstabelecimento;
-    String CodigoEstabelecimento;
     String TipoCurso;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ver_cursos);
+        setContentView(R.layout.activity_ver_cursos_corporativo);
 
         Bundle extras = getIntent().getExtras();
 
@@ -45,11 +48,17 @@ public class VerCursos extends AppCompatActivity
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        NomeEstabelecimento = extras.getString("NomeEstabelecimento");
-        CodigoEstabelecimento = extras.getString("CodigoEstabelecimento");
+        corporativo = Singleton.getInstance(getApplicationContext()).getCorporativo();
+
         TipoCurso = extras.getString("AreaCurso");
+
+        LoadCursos();
+    }
+
+    private void LoadCursos()
+    {
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("Cursos"+NomeEstabelecimento+CodigoEstabelecimento+"/"+TipoCurso).addListenerForSingleValueEvent(new ValueEventListener()
+        databaseReference.child("Cursos"+corporativo.getNomeEstabelecimento()+corporativo.getCodigoEstabelecimento()+"/"+TipoCurso).addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
@@ -60,7 +69,7 @@ public class VerCursos extends AppCompatActivity
                     curso = objSnapshot.getValue(Curso.class);
                     cursoArrayList.add(curso);
                     if(adapter == null)
-                        adapter =new CursoUsuarioAdapter(cursoArrayList, getApplicationContext());
+                        adapter =new CursoUsuarioAdapter(cursoArrayList, getApplicationContext(),"x");
                     else
                         adapter.notifyDataSetChanged();
 
@@ -73,6 +82,5 @@ public class VerCursos extends AppCompatActivity
 
             }
         });
-
     }
 }

@@ -79,7 +79,7 @@ public class CadastroCorporativo extends AppCompatActivity
                     || senha.length() < 6){
                 if(email.equalsIgnoreCase("") ) edtEmail.setError("Email é obrigatório");
                 if(senha.equalsIgnoreCase("") ) edtSenha.setError("Senha é obrigatório");
-                if(cnpj.equalsIgnoreCase("") ) edtCnpj.setError("CNPJ é obrigatório");
+                //if(cnpj.equalsIgnoreCase("") ) edtCnpj.setError("CNPJ é obrigatório");
                 if(senhaConfirm.equalsIgnoreCase("") ) edtConfirmaSenha.setError("Confirme a senha por favor");
                 if(senha.length() < 6 && !senha.equalsIgnoreCase("") ) edtConfirmaSenha.setError("Escolha uma senha com pelo menos 6 caracteres");
             }else{
@@ -167,7 +167,7 @@ public class CadastroCorporativo extends AppCompatActivity
     public void cadastroCorporativo()
     {
         corpUser.setEmail(email);
-        corpUser.setCNPJ(cnpj);
+        corpUser.setCNPJ(Singleton.getInstance(getApplicationContext()).getCorporativo().getCNPJ());
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         databaseReference.child("Estabelecimentos/"+corpUser.getCNPJ().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
