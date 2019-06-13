@@ -25,6 +25,8 @@
         <activity android:name=".TipoCurso" />
         <activity android:name=".VerCursos" />
         <activity android:name=".CursoInfo"></activity>
+        <activity android:name=".PerfilUsuario"></activity>
+        <activity android:name=".PerfilCorporativo"></activity>
     </application>
 
 </manifest>

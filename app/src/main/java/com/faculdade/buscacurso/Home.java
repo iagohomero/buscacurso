@@ -24,6 +24,7 @@ public class Home extends AppCompatActivity
 
     private CardView btCadastro;
     private CardView vendascurso;
+    private CardView btPerfil;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
@@ -37,6 +38,7 @@ public class Home extends AppCompatActivity
         tvPainel = findViewById(R.id.tvPainel);
 
         btCadastro = findViewById(R.id.produtoscard);
+        btPerfil = findViewById(R.id.meuperfilcard);
         vendascurso = findViewById(R.id.vendascurso);
         vendascurso.setOnClickListener(new View.OnClickListener()
         {
@@ -60,6 +62,15 @@ public class Home extends AppCompatActivity
 
             }
         });
+        btPerfil.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Perfil();
+            }
+        });
+
         VerifyLogin();
 
 
@@ -68,6 +79,11 @@ public class Home extends AppCompatActivity
     private void VerCursos()
     {
         Intent intent = new Intent(this, TipoCurso.class);
+        startActivity(intent);
+    }
+
+    private void Perfil(){
+        Intent intent = new Intent(this, PerfilUsuario.class);
         startActivity(intent);
     }
 
