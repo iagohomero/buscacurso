@@ -27,6 +27,7 @@
         <activity android:name=".VerCursos" />
         <activity android:name=".CursoInfo"></activity>
         <activity android:name=".PerfilUsuario"></activity>
+        <activity android:name=".PerfilCorporativo"></activity>
         <activity android:name=".CursoInfo" />
     </application>
 

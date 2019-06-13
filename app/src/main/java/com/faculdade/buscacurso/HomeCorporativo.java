@@ -15,6 +15,7 @@ public class HomeCorporativo extends AppCompatActivity {
 
 
     private CardView btCadastro;
+    private CardView btPerfil;
 
 
     @Override
@@ -24,6 +25,8 @@ public class HomeCorporativo extends AppCompatActivity {
 
 
         btCadastro = findViewById(R.id.produtoscard);
+        btPerfil = findViewById(R.id.meuperfilcard);
+
         btCadastro.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -37,9 +40,24 @@ public class HomeCorporativo extends AppCompatActivity {
                 }, 200);
             }
         });
+
+        btPerfil.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Perfil();
+            }
+        });
+
+
     }
     public void pushCursoCadastro(){
         Intent intent = new Intent(getApplicationContext(),CadastroCurso.class);
+        startActivity(intent);
+    }
+    public void Perfil(){
+        Intent intent = new Intent(getApplicationContext(),PerfilCorporativo.class);
         startActivity(intent);
     }
 
