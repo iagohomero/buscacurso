@@ -128,7 +128,7 @@ public class CursoUsuarioAdapter extends RecyclerView.Adapter<CursoUsuarioAdapte
                 {
                     Intent intent = new Intent(context, VerCursosCorporativo.class);
                     intent.putExtra("AreaCurso", arrayList.get(position).getArea_Curso());
-
+                    intent.setAction("asd");
 
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);

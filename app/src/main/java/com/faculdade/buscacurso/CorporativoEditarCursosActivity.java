@@ -110,14 +110,14 @@ public class CorporativoEditarCursosActivity extends AppCompatActivity
 
         cursoAlterar.setNome(tvCurso.getText().toString());
         cursoAlterar.setEndereco(tvEndereco.getText().toString());
-        cursoAlterar.setData_Inicio(tvEndereco.getText().toString());
-        cursoAlterar.setData_Fim(tvEndereco.getText().toString());
-        cursoAlterar.setData_Inicio_Inscricao(tvEndereco.getText().toString());
-        cursoAlterar.setData_Fim_Inscricao(tvEndereco.getText().toString());
-        cursoAlterar.setBolsa(tvEndereco.getText().toString());
-        cursoAlterar.setLimite_Alunos(tvEndereco.getText().toString());
-        cursoAlterar.setNota_Mec(tvEndereco.getText().toString());
-        cursoAlterar.setCarga_Horaria(tvEndereco.getText().toString());
+        cursoAlterar.setData_Inicio(tvDataInicioCurso.getText().toString());
+        cursoAlterar.setData_Fim(tvDataFim.getText().toString());
+        cursoAlterar.setData_Inicio_Inscricao(tvDataInicioInscricao.getText().toString());
+        cursoAlterar.setData_Fim_Inscricao(tvDataFimInscricao.getText().toString());
+        cursoAlterar.setBolsa(tvBolsa.getText().toString());
+        cursoAlterar.setLimite_Alunos(tvLimiteAlunos.getText().toString());
+        cursoAlterar.setNota_Mec(tvNota.getText().toString());
+        cursoAlterar.setCarga_Horaria(tvCargaHoraria.getText().toString());
         cursoAlterar.setTipo_curso(tvTipoCurso.getText().toString());
         cursoAlterar.setPreco(tvPreco.getText().toString());
 
@@ -139,6 +139,7 @@ public class CorporativoEditarCursosActivity extends AppCompatActivity
                 if(task.isSuccessful())
                 {
                     Toast.makeText(getApplicationContext(), "Curso alterado com sucesso.",Toast.LENGTH_LONG).show();
+                    finish();
                 }
             }
         });
@@ -146,6 +147,9 @@ public class CorporativoEditarCursosActivity extends AppCompatActivity
     }
     private void DeletarCurso()
     {
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Tem certeza que deseja excluir o curso?")
                 .setCancelable(false)
@@ -161,6 +165,7 @@ public class CorporativoEditarCursosActivity extends AppCompatActivity
                                 if(task.isSuccessful())
                                 {
                                     Toast.makeText(getApplicationContext(), "Curso deletado com sucesso.",Toast.LENGTH_LONG).show();
+                                    finish();
                                 }
                             }
                         });

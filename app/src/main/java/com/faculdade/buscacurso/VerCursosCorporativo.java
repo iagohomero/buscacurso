@@ -1,5 +1,6 @@
 package com.faculdade.buscacurso;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +32,7 @@ public class VerCursosCorporativo extends AppCompatActivity
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference databaseReference;
-
+    Bundle extrasToPut;
     String TipoCurso;
 
 
@@ -41,8 +42,9 @@ public class VerCursosCorporativo extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_cursos_corporativo);
 
-        Bundle extras = getIntent().getExtras();
 
+        Bundle extras = getIntent().getExtras();
+        this.extrasToPut = extras;
         recyclerView = findViewById(R.id.recycler_view);
         layoutManager=new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -83,4 +85,5 @@ public class VerCursosCorporativo extends AppCompatActivity
             }
         });
     }
+
 }
