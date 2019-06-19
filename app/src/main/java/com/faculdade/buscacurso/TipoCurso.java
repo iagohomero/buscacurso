@@ -51,6 +51,7 @@ public class TipoCurso extends AppCompatActivity
 
     private void LoadEstabelecimentos()
     {
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("Estabelecimentos").addListenerForSingleValueEvent(new ValueEventListener()
         {
             @Override

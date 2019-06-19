@@ -131,7 +131,7 @@ public class CorporativoEditarCursosActivity extends AppCompatActivity
         firebaseUser = firebaseAuth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("Cursos"+corporativo.getNomeEstabelecimento()+corporativo.getCodigoEstabelecimento()+"/"+curso.getArea_Curso()
-                                                        +"/"+curso.getId()).setValue(curso).addOnCompleteListener(new OnCompleteListener<Void>()
+                                                        +"/"+curso.getId()).setValue(cursoAlterar).addOnCompleteListener(new OnCompleteListener<Void>()
         {
             @Override
             public void onComplete(@NonNull Task<Void> task)
@@ -153,7 +153,7 @@ public class CorporativoEditarCursosActivity extends AppCompatActivity
                 {
                     public void onClick(DialogInterface dialog, int id) {
                         databaseReference.child("Cursos"+corporativo.getNomeEstabelecimento()+corporativo.getCodigoEstabelecimento()+"/"+curso.getArea_Curso()
-                                +"/"+curso.getId()).setValue(null).addOnCompleteListener(new OnCompleteListener<Void>()
+                                +"/"+curso.getId()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>()
                         {
                             @Override
                             public void onComplete(@NonNull Task<Void> task)
