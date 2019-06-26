@@ -99,7 +99,8 @@ public class CursoUsuarioAdapter extends RecyclerView.Adapter<CursoUsuarioAdapte
             holder.tvEndereco.setText(arrayList.get(position).getEndereco());
             holder.tvValor.setText(arrayList.get(position).getBolsa());
             holder.tvInscricao.setText(arrayList.get(position).getData_Fim_Inscricao());
-            holder.tvNomeEstabelecimento.setText("x");
+            holder.tvNomeCurso.setVisibility(View.INVISIBLE);
+            holder.tvNomeEstabelecimento.setText(arrayList.get(position).getNome());
             holder.cardView.setOnClickListener(new View.OnClickListener()
             {
                 @Override
